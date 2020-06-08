@@ -25,6 +25,8 @@ This is basically an `ncat` client and requires user to provide a server ceritif
 
 Notice that by default all your operations on your Ncat server will be printed on the screen of the client, who executes the script to send you the reverse shell. This is done because we assume your use of this script is benign, and giving the client side some feedback can lead to less confusion and more trust.
 
+Also, notice that this reverse shell script is intended for Unix-like systems (e.g. Linux, and I tested on Mac OS and it worked, too). Can't promise too much but if I have time, I will try to study and write an equivalent version in Windows.
+
 No external Python package needs to be installed to run this script.
 
 ### tcp-ping.py
@@ -35,6 +37,8 @@ This script requires `numpy`.
 
 ### pingsweep.py
 
-A script to perform a parallelized ping sweep. You can either provide a network range in CIDR format (pass as an argument) or a file containing a list of IP addresses to ping (pass to stdin). When testing in a private network environment, I noticed when more threads are used, I tend to not receive replies from more hosts that are actually up. I do not know the reason. If you have insight on what might have caused this, please let me know by all means. As for now, I'm setting the default number of threads to 4 for a balance between accuracy and speed (which is a bit on the slow side).
+A script to perform a parallelized ping sweep. You can either provide a network range in CIDR format (pass as an argument) or a file containing a list of IP addresses to ping (pass to stdin).
+
+When testing in a private network environment, I noticed the more threads I used, the more false negative I tend to get (i.e. replies not received from hosts that are actually up). Same thing seem to happen to `nmap -sn` and `arp-scan` and I do not know the reason. If you have insights on what might have caused this, please let me know by all means. As for now, I'm setting the default number of threads to 4 for a balance between accuracy and speed (which is a bit on the slow side).
 
 This script requires `ipaddress`.
