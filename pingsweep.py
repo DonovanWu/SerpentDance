@@ -53,10 +53,8 @@ parser.add_argument('cidr', nargs='?', help="If not given, please pass an input 
                                             "one per line, to the stdin.")
 parser.add_argument('-t', action='store', type=int, required=False, default=4, metavar='num_threads',
                     help="Number of threads. Must be between 1 and %d (inclusively). Default is 4." % MAX_THREADS)
-parser.add_argument('-c', action='store', required=False, default='private', metavar='config',
-                    help="Choose a ping configuration. Affects how fast ping sweep goes. "
-                         "Available options: {%s}. Default is 'private' for sweeping private networks."
-                         % ', '.join(ping_config.keys()))
+parser.add_argument('-c', action='store', required=False, default='private', choices=list(ping_config),
+                    help="Choose a ping configuration. Sweeps faster when in lower-latency, less-lossy networks.")
 args = parser.parse_args()
 
 cidr = args.cidr

@@ -33,8 +33,6 @@ No external Python package needs to be installed to run this script.
 
 A script to test round-trip time (RTT) for hosts that don't answer ping (e.g. those that have a firewall that blocks ICMP) by using TCP handshake, if you know what port is open on the host. Notice that TCP protocol has packet retransmission mechanism, so this script cannot measure packet loss rate, and RTT can blow up when severe packet loss occurs.
 
-This script requires `numpy`.
-
 ### pingsweep.py
 
 A script to perform a parallelized ping sweep. You can either provide a network range in CIDR format (pass as an argument) or a file containing a list of IP addresses to ping (pass to stdin).

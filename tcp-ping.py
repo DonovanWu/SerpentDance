@@ -1,12 +1,27 @@
-import time, socket, argparse, atexit
-import numpy as np
+import time, socket, argparse, atexit, math
+
+
+def mean(arr):
+    if len(arr) == 0:
+        return float('nan')
+    return sum(arr) / len(arr)
+
+
+def std(arr):
+    if len(arr) == 0:
+        return float('nan')
+    elif len(arr) == 1:
+        return 0.
+    
+    avg = mean(arr)
+    return math.sqrt(sum(map(lambda x: (x - avg) ** 2, arr)) / len(arr))
 
 
 def display_stats():
     if len(stats) > 0:
         print('\n--- %s ping statistics ---' % host)
         print('round-trip min/avg/max/stddev = %.3f/%.3f/%.3f/%.3f ms' % (
-                min(stats), np.mean(stats), max(stats), np.std(stats)))
+                min(stats), mean(stats), max(stats), std(stats)))
 
 
 parser = argparse.ArgumentParser()

@@ -220,6 +220,8 @@ def tcp():
 
 
 def exit_message():
+    if daemon and pid > 0:
+        return
     logging.info('Bye bye.')
 
 
