@@ -103,3 +103,7 @@ db.sqlite3
 *~
 *.swp
 *.swo
+
+# SSL
+*.pem
+*.crt

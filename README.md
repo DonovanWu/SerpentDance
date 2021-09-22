@@ -7,7 +7,7 @@ Serpent Dance is a collection of simple Python scripts for security testing. You
 
 The name of this project is inspired by a scene in Blade Runner, because... Python penetration testing??
 
-Also, please don't mind some "decorative" stuff I added to the scripts. It's to give the scripts some more "identity", much like the useless "mother fXXker" entry in Mirai's list of default credentials.
+Also, please don't mind some "decorative" stuff I added to the scripts. It's to give the scripts some more "identity", much like the useless "mother fXXker" entry in Mirai's list of default credentials. LOL
 
 ## Scripts
 
@@ -40,3 +40,16 @@ A script to perform a parallelized ping sweep. You can either provide a network 
 When testing in a private network environment, I noticed the more threads I used, the more false negative I tend to get (i.e. replies not received from hosts that are actually up). Same thing seem to happen to `nmap -sn` and `arp-scan` and I do not know the reason. If you have insights on what might have caused this, please let me know by all means. As for now, I'm setting the default number of threads to 4 for a balance between accuracy and speed (which is a bit on the slow side).
 
 This script requires `ipaddress`.
+
+### https-server.py
+
+Pretty much Python 3's HTTP server in `http` module (i.e. `python3 -m http.server <port>`) but encrypts the traffic. If the pentest is done via public network, this script might be useful when transferring files.
+
+Note: CGI mode is a bit different on the server side but it works...
+
+Most likely, you'll need to bypass certificate checking on the client side:
+* For `curl` users, add the flag `--insecure`
+* For Firefox users, click on "Advanced..." button and then choose "Accept the Risk and Continue"
+* For Chrome users, it seems like you have to generate a self-signed CA to sign your certificate, and then add the CA to Trusted Root Certification Authorities, which is too much work to do, so I suggest using Firefox instead
+
+If you encounter something like a "connection reset" error in your browser, make sure you have explicitly specified `https://` protocol.
