@@ -16,7 +16,7 @@ parser.add_argument('--dir', action='store', required=False, default=os.getcwd()
 parser.add_argument('--key', action='store', required=True, metavar='keyfile')
 parser.add_argument('--cert', action='store', required=True, metavar='certfile')
 parser.add_argument('--threaded', action='store_true')
-parser.add_argument('--cgi', action='store_true')
+parser.add_argument('--cgi', action='store_true', help='Run as CGI server.')
 args = parser.parse_args()
 
 port = args.port
@@ -37,4 +37,8 @@ if cgi:
 server = servercls((bindaddr, port), handlercls)
 with ssl.wrap_socket(server.socket, server_side=True, certfile=cert, keyfile=key) as ssock:
     server.socket = ssock
-    server.serve_forever()
+    print(f'Serving HTTPS on {bindaddr} port {port} (https://{bindaddr}:{port}/) ...')
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print('\nKeyboard interrupt received, exiting.')

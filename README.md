@@ -7,11 +7,11 @@ Serpent Dance is a collection of simple Python scripts for security testing. You
 
 The name of this project is inspired by a scene in Blade Runner, because... Python penetration testing??
 
-Also, please don't mind some "decorative" stuff I added to the scripts. It's to give the scripts some more "identity", much like the useless "mother fXXker" entry in Mirai's list of default credentials. LOL
+Also, please don't mind some "decorative" stuff I added to the scripts... It's to give the scripts some more "identity", more or less like the useless "mother fXXker" entry in Mirai's list of default credentials. LOL
 
 ## Scripts
 
-All scripts are written with Python 3 in mind. Some parts of their code are not compatible with Python 2.
+All scripts are intended to be run with Python 3. Python 2 will not work.
 
 ### packet-blackhole.py
 
@@ -21,17 +21,19 @@ No external Python package needs to be installed to run this script.
 
 ### secure-reverse-shell.py
 
-This is basically an `ncat` client and requires user to provide a server ceritificate, so that the reverse shell transmission can be encrypted. If you don't want to install `nmap` on a client's machine to run `ncat`, but client's machine has `python3` installed, you can simply use this script.
+This is basically an `ncat` client and requires user to provide a server ceritificate, so that the reverse shell transmission can be encrypted. If you don't want to install suspicious programs on a client's machine, but the client's machine has `python3` installed, you can simply use this script.
 
 Notice that by default all your operations on your Ncat server will be printed on the screen of the client, who executes the script to send you the reverse shell. This is done because we assume your use of this script is benign, and giving the client side some feedback can lead to less confusion and more trust.
 
-Also, notice that this reverse shell script is intended for Unix-like systems (e.g. Linux, and I tested on Mac OS and it worked, too). Can't promise too much but if I have time, I will try to study and write an equivalent version in Windows.
+Notice that this reverse shell script is intended for Unix-like systems (e.g. Linux, Mac OS, etc.).
 
 No external Python package needs to be installed to run this script.
 
 ### tcp-ping.py
 
-A script to test round-trip time (RTT) for hosts that don't answer ping (e.g. those that have a firewall that blocks ICMP) by using TCP handshake, if you know what port is open on the host. Notice that TCP protocol has packet retransmission mechanism, so this script cannot measure packet loss rate, and RTT can blow up when severe packet loss occurs.
+A script to test round-trip time (RTT) for hosts that don't answer ping (e.g. those that have a firewall that blocks ICMP) by using TCP handshake, provided that you know what port is open on the host. Notice that TCP protocol has packet retransmission mechanism, so this script cannot measure packet loss rate, and RTT can blow up when severe packet loss occurs. Therefore, this script shall only be used as a desperate measure.
+
+No external Python package needs to be installed to run this script.
 
 ### pingsweep.py
 
@@ -45,11 +47,11 @@ This script requires `ipaddress`.
 
 Pretty much Python 3's HTTP server in `http` module (i.e. `python3 -m http.server <port>`) but encrypts the traffic. If the pentest is done via public network, this script might be useful when transferring files.
 
-Note: CGI mode is a bit different on the server side but it works...
-
 Most likely, you'll need to bypass certificate checking on the client side:
 * For `curl` users, add the flag `--insecure`
 * For Firefox users, click on "Advanced..." button and then choose "Accept the Risk and Continue"
 * For Chrome users, it seems like you have to generate a self-signed CA to sign your certificate, and then add the CA to Trusted Root Certification Authorities, which is too much work to do, so I suggest using Firefox instead
 
 If you encounter something like a "connection reset" error in your browser, make sure you have explicitly specified `https://` protocol.
+
+No external Python package needs to be installed to run this script.
