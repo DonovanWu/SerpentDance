@@ -55,3 +55,11 @@ Most likely, you'll need to bypass certificate checking on the client side:
 If you encounter something like a "connection reset" error in your browser, make sure you have explicitly specified `https://` protocol.
 
 No external Python package needs to be installed to run this script.
+
+### pyinstaller-make.py
+
+I encountered a few situations where I needed to turn a python script into an executable when learning about pentest so I wrote this script. Under the hood it uses `pyinstaller`. It includes two subcommands `install` and `clean`. Hopefully it makes compiling python scripts into executables easier for you.
+
+Currently it's under active development, and still needs some testing and debugging.
+
+This script requires `pip` and `konsoru`.
