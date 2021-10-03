@@ -10,8 +10,8 @@ OPTION_CONFIG_EXAMPLE = '''
             "system": "Windows",
             "data": [
                 {
-                    "src": "{tkfilebrowser.__path__[0]}/images/*.png",
-                    "dst": "tkfilebrowser/images"
+                    "src": "{tkfilebrowser.__path__[0]}\\images\\*.png",
+                    "dst": "tkfilebrowser\\images"
                 }
             ]
         }
@@ -23,12 +23,12 @@ OPTION_CONFIG_EXAMPLE = '''
             "system": "Windows",
             "args": [
                 {
-                    "src": "{os.path.dirname(sys.executable)}/Lib/site-packages/magic/libmagic/libmagic.dll",
-                    "dst": "magic/libmagic"
+                    "src": "{os.path.dirname(sys.executable)}\\Lib\\site-packages\\magic\\libmagic\\libmagic.dll",
+                    "dst": "magic\\libmagic"
                 },
                 {
-                    "src": "{os.path.dirname(sys.executable)}/Lib/site-packages/magic/libmagic/magic.mgc",
-                    "dst": "magic/libmagic"
+                    "src": "{os.path.dirname(sys.executable)}\\Lib\\site-packages\\magic\\libmagic\\magic.mgc",
+                    "dst": "magic\\libmagic"
                 }
             ]
         },
@@ -115,6 +115,7 @@ def remove_rf(path):
         elif os.path.isdir(path):
             for child in os.listdir(path):
                 remove_rf(os.path.join(path, child))
+            os.rmdir(path)
     else:
         for realpath in path:
             remove_rf(realpath)
@@ -228,7 +229,7 @@ if platform.system() not in ('Windows', 'Darwin', 'Linux'):
 python_version = sys.version.split(' ')[0]
 pvx, pvy, _ = python_version.split('.', maxsplit=2)
 pvx, pvy = int(pvx), int(pvy)
-if pvx != 3 and pvy < 5:
+if pvx < 3 or (pvx == 3 and pvy < 5):
     raise RuntimeError('Please use Python 3.5 or above to run this script!')
 
 cli.run()
