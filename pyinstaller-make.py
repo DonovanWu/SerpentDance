@@ -122,13 +122,13 @@ def remove_rf(path):
 
 
 @cli.subroutine()
-# @parameter('software_name', help='Default is the name of the current working directory')
-# @parameter('main_file', help='Default is main.py')
-# @parameter('filename_format',
-#            help='Default is "%(software_name)s-%(distro)s-%(version)s", that includes all configurable stuff')
-# @parameter('version', help='Default is 0.0.1')
-# @parameter('debug_window', help='Disables --noconsole option in pyinstaller')
-# @parameter('extra_options', help='JSON config file for extra options related to pyinstaller')
+@parameter('software_name', help='Default is the name of the current working directory')
+@parameter('main_file', help='Default is main.py')
+@parameter('filename_format',
+           help='Default is "%%(software_name)s-%%(distro)s-%%(version)s", that includes all configurable stuff')
+@parameter('version', help='Default is 0.0.1')
+@parameter('debug_window', help='Disables --noconsole option in pyinstaller')
+@parameter('extra_options', help='JSON config file for extra options related to pyinstaller')
 def install(software_name=None, main_file='main.py', filename_format='%(software_name)s-%(distro)s-%(version)s',
             version='0.0.1', debug_window=False, extra_options=''):
     clean()
