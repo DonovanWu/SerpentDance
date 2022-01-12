@@ -121,7 +121,7 @@ def remove_rf(path):
             remove_rf(realpath)
 
 
-@cli.subroutine()
+@cli.subroutine
 @parameter('software_name', help='Default is the name of the current working directory')
 @parameter('main_file', help='Default is main.py')
 @parameter('filename_format',
@@ -209,7 +209,7 @@ def install(software_name=None, main_file='main.py', filename_format='%(software
         raise SystemExit(1)
 
 
-@cli.subroutine()
+@cli.subroutine
 def clean():
     for path in ('build', 'dist', '*.spec'):
         remove_rf(path)

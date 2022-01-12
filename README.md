@@ -41,7 +41,7 @@ A script to perform a parallelized ping sweep. You can either provide a network 
 
 When testing in a private network environment, I noticed the more threads I used, the more false negative I tend to get (i.e. replies not received from hosts that are actually up). Same thing seem to happen to `nmap -sn` and `arp-scan` and I do not know the reason. If you have insights on what might have caused this, please let me know by all means. As for now, I'm setting the default number of threads to 4 for a balance between accuracy and speed (which is a bit on the slow side).
 
-This script requires `ipaddress`.
+This script requires `ipaddress` (version `>=1.0.23`).
 
 ### https-server.py
 
@@ -62,4 +62,4 @@ I encountered a few situations where I needed to turn a python script into an ex
 
 Currently it's under active development, and still needs some testing and debugging.
 
-This script requires `pip` and `konsoru`.
+This script requires `pip` (latest version) and `konsoru` (version `>=0.1.2`).
